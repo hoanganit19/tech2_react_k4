@@ -22,3 +22,12 @@ React JS
 Cài đặt React JS
 
 - Cài đặt gói Create React App
+
+Props
+
+- Truyền dữ liệu từ Component cha sang Component con
+- Trong component không thể thay đổi được dữ liệu (của props)
+
+ví dụ: A => B (name) => B không thể được name
+
+=> Khi prop thanh đổi => component con sẽ bị re-render
