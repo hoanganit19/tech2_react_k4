@@ -1,14 +1,16 @@
 import React, { Component } from "react";
 
+import Config from "./Config.json";
+
+const { rate } = Config;
 export class VndToUsd extends Component {
   constructor(props) {
     super(props);
-    this.rate = 23500;
   }
 
   handleChangeValue = (e) => {
     const vnd = e.target.value;
-    const usd = parseFloat(vnd / this.rate).toFixed(2);
+    const usd = parseFloat(vnd / rate).toFixed(2);
     this.props.onGetUsd(usd, vnd);
   };
   render() {
