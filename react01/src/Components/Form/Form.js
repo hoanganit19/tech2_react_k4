@@ -23,6 +23,8 @@ export class Form extends Component {
 
     const errors = {};
 
+    //errors.field.rule
+
     if (email.trim() == "") {
       errors.email = "Email is required";
     }
