@@ -63,6 +63,19 @@ export class TodoList extends Component {
     });
   };
 
+  getTodos = async () => {
+    const response = await fetch("http://localhost:3004/todos");
+    console.log(response);
+    const data = await response.json();
+    this.setState({
+      todoList: data,
+    });
+  };
+
+  componentDidMount() {
+    this.getTodos();
+  }
+
   render() {
     let { todoList, searchResult } = this.state;
     if (searchResult.length) {
@@ -93,3 +106,6 @@ export class TodoList extends Component {
 }
 
 export default TodoList;
+
+//Cấu trúc api url
+//server_api+endpoint

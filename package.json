@@ -1,5 +1,7 @@
 {
   "dependencies": {
-    "bootstrap": "^5.2.3"
+    "bootstrap": "^5.2.3",
+    "clsx": "^1.2.1",
+    "sass": "^1.58.3"
   }
 }

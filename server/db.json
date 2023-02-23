@@ -32,5 +32,37 @@
       "name": "Nguyễn Văn C",
       "email": "nguyenvanc@gmail.com"
     }
+  ],
+  "products": [
+    {
+      "id": 1,
+      "name": "SP 1"
+    },
+    {
+      "id": 2,
+      "name": "SP 2"
+    },
+    {
+      "id": 3,
+      "name": "SP 3"
+    }
+  ],
+
+  "todos": [
+    {
+      "id": 1,
+      "name": "Công việc 1",
+      "completed": false
+    },
+    {
+      "id": 2,
+      "name": "Công việc 3",
+      "completed": false
+    },
+    {
+      "id": 3,
+      "name": "Công việc 3",
+      "completed": false
+    }
   ]
 }
