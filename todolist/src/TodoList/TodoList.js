@@ -12,11 +12,13 @@ export class TodoList extends Component {
     super();
     this.state = {
       todoList: [],
+      searchResult: [],
     };
   }
 
   handleAddTodo = (todo) => {
     this.setState({
+      searchResult: [],
       todoList: this.state.todoList.concat(todo),
     });
   };
@@ -25,6 +27,7 @@ export class TodoList extends Component {
     const data = this.state.todoList.filter((todo) => todo.id !== id);
     this.setState({
       todoList: data,
+      searchResult: [],
     });
 
     toast.success("Xóa công việc thành công");
@@ -44,13 +47,27 @@ export class TodoList extends Component {
       todoList[index].completed = !todoList[index].completed;
       this.setState({
         todoList: todoList,
+        searchResult: [],
       });
       toast.success("Cập nhật thành công");
     }
   };
 
+  handleSearch = (keyword) => {
+    const todoList = this.state.todoList.filter((todo) => {
+      return todo.name.toLowerCase().includes(keyword.toLowerCase());
+    });
+
+    this.setState({
+      searchResult: todoList,
+    });
+  };
+
   render() {
-    const { todoList } = this.state;
+    let { todoList, searchResult } = this.state;
+    if (searchResult.length) {
+      todoList = searchResult;
+    }
 
     return (
       <div className="container">
@@ -58,7 +75,7 @@ export class TodoList extends Component {
           <div className="col-7">
             <div className="todo">
               <h2 className="text-center">Todo App</h2>
-              <TodoSearch />
+              <TodoSearch onSearch={this.handleSearch} />
               <hr />
               <TodoShow
                 todoList={todoList}
