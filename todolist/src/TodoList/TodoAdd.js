@@ -20,7 +20,7 @@ export class TodoAdd extends Component {
 
       //Tạo 1 object tương ứng với 1 todo
       const todo = {
-        id: uniqueId(),
+        //  id: uniqueId(),
         name: doName,
         completed: false,
       };

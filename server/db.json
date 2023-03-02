@@ -47,22 +47,26 @@
       "name": "SP 3"
     }
   ],
-
   "todos": [
-    {
-      "id": 1,
-      "name": "Công việc 1",
-      "completed": false
-    },
-    {
-      "id": 2,
-      "name": "Công việc 3",
-      "completed": false
-    },
     {
       "id": 3,
       "name": "Công việc 3",
       "completed": false
+    },
+    {
+      "name": "Công việc 4",
+      "completed": false,
+      "id": 4
+    },
+    {
+      "name": "Học React JS",
+      "completed": false,
+      "id": 5
+    },
+    {
+      "name": "Học Node JS",
+      "completed": false,
+      "id": 6
     }
   ]
 }

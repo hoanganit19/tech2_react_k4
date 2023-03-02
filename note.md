@@ -31,3 +31,10 @@ Props
 ví dụ: A => B (name) => B không thể được name
 
 => Khi prop thanh đổi => component con sẽ bị re-render
+
+State
+
+Refs
+
+- Ref trong React chỉ tham chiếu được với Element (jsx)
+- Nếu muốn tham chiếu ref thông qua Component => sử dụng forwardRef

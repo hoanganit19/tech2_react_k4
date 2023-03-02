@@ -12,64 +12,127 @@ export class TodoList extends Component {
     super();
     this.state = {
       todoList: [],
-      searchResult: [],
+      isLoading: true,
+      // searchResult: [],
     };
+    this.apiUrl = `http://localhost:3004/todos`;
   }
 
   handleAddTodo = (todo) => {
-    this.setState({
-      searchResult: [],
-      todoList: this.state.todoList.concat(todo),
-    });
+    // this.setState({
+    //   searchResult: [],
+    //   todoList: this.state.todoList.concat(todo),
+    // });
+    this.addTodo(todo);
   };
 
   handleRemoveTodo = (id) => {
-    const data = this.state.todoList.filter((todo) => todo.id !== id);
-    this.setState({
-      todoList: data,
-      searchResult: [],
-    });
-
-    toast.success("Xóa công việc thành công");
-
     // const index = this.state.todoList.findIndex((todo) => todo.id === id);
     // const todoList = [...this.state.todoList];
     // todoList.splice(index, 1);
     // this.setState({
     //   todoList: todoList,
     // });
+    this.removeTodo(id);
   };
 
   handleMarkCompleted = (id) => {
-    const index = this.state.todoList.findIndex((todo) => todo.id === id);
-    if (index !== -1) {
-      const todoList = [...this.state.todoList];
-      todoList[index].completed = !todoList[index].completed;
-      this.setState({
-        todoList: todoList,
-        searchResult: [],
-      });
-      toast.success("Cập nhật thành công");
-    }
+    this.markCompleted(id);
   };
 
   handleSearch = (keyword) => {
-    const todoList = this.state.todoList.filter((todo) => {
-      return todo.name.toLowerCase().includes(keyword.toLowerCase());
-    });
+    // const todoList = this.state.todoList.filter((todo) => {
+    //   return todo.name.toLowerCase().includes(keyword.toLowerCase());
+    // });
 
-    this.setState({
-      searchResult: todoList,
-    });
+    // this.setState({
+    //   searchResult: todoList,
+    // });
+    this.searchTodos(keyword);
   };
 
+  //Api: get
   getTodos = async () => {
-    const response = await fetch("http://localhost:3004/todos");
+    const response = await fetch(this.apiUrl);
     console.log(response);
     const data = await response.json();
     this.setState({
       todoList: data,
+      isLoading: false,
     });
+  };
+
+  //Api: add
+  addTodo = async (todo) => {
+    const response = await fetch(this.apiUrl, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(todo),
+    });
+    if (response.ok) {
+      //Thêm thành công
+      const data = await response.json(); //server sẽ trả về object vừa thêm được
+      this.setState({
+        todoList: this.state.todoList.concat(data),
+      });
+    }
+  };
+
+  //Api: delete
+  removeTodo = async (id) => {
+    const response = await fetch(`${this.apiUrl}/${id}`, {
+      method: "DELETE",
+    });
+
+    if (response.ok) {
+      //Cập nhật lại UI
+      const data = this.state.todoList.filter((todo) => todo.id !== id);
+      this.setState({
+        todoList: data,
+      });
+
+      toast.success("Xóa công việc thành công");
+    } else {
+      toast.error("Bạn không thể xóa vào lúc này");
+    }
+  };
+
+  //Api: markCompleted
+  markCompleted = async (id) => {
+    const index = this.state.todoList.findIndex((todo) => todo.id === id);
+    const todoList = [...this.state.todoList];
+
+    const response = await fetch(`${this.apiUrl}/${id}`, {
+      method: "PATCH",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({ completed: !todoList[index].completed }),
+    });
+
+    if (response.ok) {
+      if (index !== -1) {
+        todoList[index].completed = !todoList[index].completed;
+        this.setState({
+          todoList: todoList,
+        });
+
+        toast.success("Cập nhật thành công");
+      }
+    }
+  };
+
+  //Api: Search
+  searchTodos = async (keyword) => {
+    const response = await fetch(`${this.apiUrl}?q=${keyword}`);
+    if (response.ok) {
+      const data = await response.json();
+      this.setState({
+        todoList: data,
+      });
+    }
   };
 
   componentDidMount() {
@@ -77,10 +140,7 @@ export class TodoList extends Component {
   }
 
   render() {
-    let { todoList, searchResult } = this.state;
-    if (searchResult.length) {
-      todoList = searchResult;
-    }
+    let { todoList, isLoading } = this.state;
 
     return (
       <div className="container">
@@ -90,11 +150,15 @@ export class TodoList extends Component {
               <h2 className="text-center">Todo App</h2>
               <TodoSearch onSearch={this.handleSearch} />
               <hr />
-              <TodoShow
-                todoList={todoList}
-                onRemoveTodo={this.handleRemoveTodo}
-                onMarkCompleted={this.handleMarkCompleted}
-              />
+              {isLoading ? (
+                <p>Loading...</p>
+              ) : (
+                <TodoShow
+                  todoList={todoList}
+                  onRemoveTodo={this.handleRemoveTodo}
+                  onMarkCompleted={this.handleMarkCompleted}
+                />
+              )}
               <TodoAdd onAddTodo={this.handleAddTodo} />
             </div>
           </div>
