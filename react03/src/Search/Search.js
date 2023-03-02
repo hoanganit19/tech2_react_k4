@@ -1,5 +1,6 @@
 import React, { Component, createRef } from "react";
 import Input from "./Input";
+import { Color } from "./Color";
 
 export class Search extends Component {
   constructor() {
@@ -31,4 +32,4 @@ export class Search extends Component {
   }
 }
 
-export default Search;
+export default Color(Search);

@@ -38,3 +38,33 @@ Refs
 
 - Ref trong React chỉ tham chiếu được với Element (jsx)
 - Nếu muốn tham chiếu ref thông qua Component => sử dụng forwardRef
+
+Higher Order Component
+
+- Component ở cấp cao hơn (Component bọc component)
+- Kế thừa logic
+- Kiến thức Closure Javascript
+
+Context
+
+- Context là 1 component
+- Truyền và nhận dữ liệu tới nhiều cấp component mà không cần thông qua props
+- Ứng dụng:
+
+* Share data (state) giữa các component ngang hàng
+* Xây dựng lên các State Management (Giống Redux)
+
+Các thành phần của Context
+
+- Context Object (Tạo bằng React.createContext)
+- Provider => Gửi dữ liệu
+- Consumer => Nhận dữ liệu
+
+Lưu ý: Context áp dụng với cả class và functional component
+
+Ví dụ: A => B => C => D
+
+Quản lý State Global bằng Context
+
+- Xây dựng 1 component `StateProvider`
+- Bọc component `StateProvider` vào App.js hoặc index.js
