@@ -68,3 +68,8 @@ Quản lý State Global bằng Context
 
 - Xây dựng 1 component `StateProvider`
 - Bọc component `StateProvider` vào App.js hoặc index.js
+
+# React Router DOM
+
+- Giải quyết vấn đề đường dẫn
+- Tính tuyến url
