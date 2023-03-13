@@ -27,8 +27,9 @@ function App() {
             <Route path="/san-pham">
               <Route path="" element={<Products />} />
               <Route
-                path="chi-tiet/:slug/:productId.html"
+                path="chi-tiet/:path.html"
                 element={<ProductDetail />}
+                exact
               />
             </Route>
             <Route path="/lien-he" element={<Contact />} />
