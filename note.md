@@ -73,3 +73,40 @@ Quản lý State Global bằng Context
 
 - Giải quyết vấn đề đường dẫn
 - Tính tuyến url
+
+# React Hook
+
+- Hook là function đặc biệt (Bắt đầu bằng từ khóa use)
+- Hook chỉ gọi được trong functional component và top level trong functional component
+
+function Home(){
+//call hook
+const getName = () => {
+//Không được hook ở đây
+}
+}
+
+- Hook trong React JS ngoài những hook do thư viện React tạo ra thì các lập trình viên có thể tự tạo Hook (Tạo function bắt đầu bằng từ khóa use)
+- Ngoài ra, các hook sẽ tồn tại bên trong các thư viện được cài thêm vào:
+
+* React Router Dom
+* Redux
+
+## Nội dung sẽ học về React Hook
+
+- Hook API (Hook có sẵn của React)
+- Custom Hook (Tự tạo hook riêng)
+
+1. useState => Làm việc với state
+2. useEffect => Làm việc với Component Lifecycle
+3. useContext => Lấy dữ liệu từ context
+4. useRef => Làm việc với refs
+5. useReducer => Làm việc với state nâng cao (reducer)
+6. useCallback
+7. useMemo
+8. useTransition
+9. useDeferredValue
+   => Liên quan đến hiệu năng
+10. useId => tự động id cho các field trong form
+11. useImperativeHandle => Hỗ trợ quản lý ref
+12. useLayoutEffect => giống useEffect chỉ khác thứ tự hoạt động
