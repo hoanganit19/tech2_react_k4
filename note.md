@@ -110,3 +110,13 @@ const getName = () => {
 10. useId => tự động id cho các field trong form
 11. useImperativeHandle => Hỗ trợ quản lý ref
 12. useLayoutEffect => giống useEffect chỉ khác thứ tự hoạt động
+
+### Hook useReducer
+
+- reducer => Function (Giống function của vòng lặp reducer)
+- actions: Object {type, payload}
+
+* type: ten_feature/ten_action
+* payload: Data dispatch
+
+- Action Creators => Function return về 1 action (object)
