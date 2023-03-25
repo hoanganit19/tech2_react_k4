@@ -1,0 +1,14 @@
+.todos{
+    max-width: 600px;
+    margin: 30px auto;
+}
+
+.todos .todos-list .todo--item .remove{
+    cursor: pointer;
+    color: red;
+}
+
+.todos .todos-list .todo--item.completed .name{
+    color: grey;
+    text-decoration: line-through;
+} 

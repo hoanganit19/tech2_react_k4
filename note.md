@@ -102,12 +102,12 @@ const getName = () => {
 3. useContext => Lấy dữ liệu từ context
 4. useRef => Làm việc với refs
 5. useReducer => Làm việc với state nâng cao (reducer)
-6. useCallback
-7. useMemo
+6. useCallback => Tránh việc khởi tạo lại hàm trong Functional Component
+7. useMemo => Tránh việc chạy lại logic trong funcional component
 8. useTransition
 9. useDeferredValue
    => Liên quan đến hiệu năng
-10. useId => tự động id cho các field trong form
+10. useId => tự động tạo id cho các field trong form
 11. useImperativeHandle => Hỗ trợ quản lý ref
 12. useLayoutEffect => giống useEffect chỉ khác thứ tự hoạt động
 
@@ -120,3 +120,18 @@ const getName = () => {
 * payload: Data dispatch
 
 - Action Creators => Function return về 1 action (object)
+
+### Build State Provider sử dụng useReducer + Context API
+
+### Tìm hiểu thêm 1 số hook
+
+- React Hook Form
+- Hook của React Router Dom (Bản 6)
+- Redux: useDispatch, useSelector => Sẽ được dạy
+
+### Custom Hook
+
+- useColor
+- useClock
+- useCountdown
+- useClient

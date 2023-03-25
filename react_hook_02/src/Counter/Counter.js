@@ -1,10 +1,11 @@
-import React, { useReducer } from "react";
+import React, { useReducer, useContext } from "react";
 import { rootReducer } from "../Reducers/rootReducer";
 import {
   incrementCount,
   decrementCount,
   resetCount,
 } from "../Reducers/Actions/counterActions";
+import { StateContext } from "../StateProvider/StateProvider";
 
 const Counter = () => {
   //   const countReducer = (prevState, newState) => {
@@ -36,6 +37,10 @@ const Counter = () => {
   const handleReset = () => {
     dispatch(resetCount());
   };
+
+  const context = useContext(StateContext);
+
+  console.log(context);
 
   return (
     <div>
