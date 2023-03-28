@@ -135,3 +135,43 @@ const getName = () => {
 - useClock
 - useCountdown
 - useClient
+
+## Redux
+
+- State => Chỉ hoạt động trong nội bộ component
+- Share State giữa các component
+
+* Render Props
+* Context API
+* Thư viện ngoài: Redux
+
+Redux cần phải học gì?
+
+- Redux Core
+- Redux Toolkit => Bản đóng gói của Redux (Giống Create React App)
+- Redux Middleware: Thunk, Saga => Thường được sử dụng để call api
+
+Redux không phải sinh ra để dành cho React
+
+Các thành phần của Redux
+
+- Store => Kho chung để quản lý State
+- Reducer => function
+- Action => Object
+- Action Creator => Hàm trả về action
+- Dispatch => Gửi action từ UI (Component) tới Reducer của Redux => Cập nhật vào State trên Store của Redux
+- Selector => Lấy State từ Store của Redux để sử dụng cho Component
+
+Hook
+
+- useDispatch()
+- useSelector()
+
+Redux Thunk
+
+- nó là 1 function
+- Dạng closure => Return về 1 function (dispatch, getState)
+
+UI (Component) => Dispatch tới Middlware (Call api) => Dispatch tới Reducer => Reducer set State
+
+UI (Component) => Selector từ Reducer
