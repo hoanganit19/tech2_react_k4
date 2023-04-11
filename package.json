@@ -3,5 +3,9 @@
     "bootstrap": "^5.2.3",
     "clsx": "^1.2.1",
     "sass": "^1.58.3"
+  },
+  "devDependencies": {
+    "json-server": "^0.17.3",
+    "json-server-auth": "^2.1.0"
   }
 }

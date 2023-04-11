@@ -175,3 +175,128 @@ Redux Thunk
 UI (Component) => Dispatch tới Middlware (Call api) => Dispatch tới Reducer => Reducer set State
 
 UI (Component) => Selector từ Reducer
+
+## Authentication
+
+### Đăng nhập
+
+- Login
+- Trả về Token
+- Lưu token vào localStorage hoặc sessionStorage, Cookie
+
+### Trang tài khoản
+
+- Call api `/getInfo` => Kèm theo token
+- Trả về full thông tin liên quan user đã đăng nhập
+- Cập nhật tài khoản => Call api `updateInfo` => Kèm theo token
+
+### Trang đăng ký
+
+- Đăng ký
+- Trả về token
+- Lưu token vào localStorage hoặc sessionStorage, Cookie
+- Ngoài ra: Xác thực tài khoản (Link qua email, otp qua email hoặc sms)
+
+### Đăng xuất
+
+- Call api `/logout`, kèm theo thiết bị
+- Server xử lý xóa token => Trả về trạng thái
+- Xóa token ở sessionStorage hoặc localStorage, Cookie
+
+### Lấy các tài nguyên Private
+
+- Call api cần lấy (`/products`)
+- Kèm theo Token: Bearer, api key, OAuth,...
+- Server trả về kết quả (có dữ liệu và lỗi xác thực)
+
+### Quên mật khẩu
+
+- Call api `/forgot-password` => Kèm email (phone, username) => Server kiểm tra xem tồn tại hay không?
+
+* Tồn tại => Tạo token (reset token) => Gửi email
+* Không tồn tại => Trả về response để client thông báo
+
+- Click vào link trong email
+- Call api `/reset-password` kèm theo reset token
+- Server check reset token có tồn tại hay không? => Trả về trạng thái
+- Client kiểm tra trạng thái
+
+* Nếu success => hiển thị form đặt lại mật khẩu (mật khẩu mới, nhập lại mật khẩu mới)
+* Nếu failed => Thông báo: `Liên kết này không tồn tại hoặc đã hết hạn`
+
+- Call api `/update-password` => Thông báo đặt lại mật khẩu thành công => Xóa tất cả token (Server xử lý)
+
+### Đăng nhập mạng xã hội
+
+- Facebook
+- Google
+- Github
+
+=> Back-End xử lý
+=> Front-End chỉ việc call api
+
+- FrontEnd call api `/login-social?provider=facebook`, `/login-social?provider=goolge`
+- Server xử lý => Trả về link Redirect qua trang Facebook
+- Client redirect tới link mà back-end trả về
+- Facebook chuyển hướng về link callback (Thiết lập trong phần Facebook Developers)
+- Call api tới back-end (kèm theo accessToken của Facebook)
+- Server xử lý: truy xuất thông người dùng trên Facebook => Xử lý đăng nhập => Trả về Token
+- Client cập nhật token vào sessionStorage hoặc localStorage, Cookie
+
+### Case Study đăng nhập
+
+1. Đăng nhập thông qua OTP
+
+- Nhập email và sdt
+- OTP sẽ gửi vào email hoặc sdt
+- Nhập OTP vào giao diện web
+- Đăng nhập thành công
+  => Dynamic Password
+
+2. Đăng nhập thông qua link
+
+- Nhập email
+- Nhận được link qua email
+- Click vào link
+- Tự động đăng nhập
+
+3. 1 tài khoản chỉ đăng nhập được ở 1 thiết bị
+
+- Tại 1 thời điểm chỉ có 1 thiết bị được online
+- Giới hạn theo thiết bị: Thiết bị đăng nhập quen (Giống phần checkpoint của Facebook)
+- Thiết lập theo số lượng thiết bị
+
+### Demo Authentication
+
+- Khi login => call api => cập nhật trạng thái lên Redux => Re-render tất cả các component
+- Khi đăng ký => call api => cập nhật trạng thái lên redux => Re-render tất cả các component
+- Đăng xuất => call api => cập nhật trạng thái lên redux => Re-render tất cả các component
+- Header
+
+* Lấy state từ Redux để hiển thị lên UI
+* Dispatch => fetchUser => Update vào state user
+
+Lưu ý: Nếu component nào muốn lấy user => useSelector tới redux để lấy user (thông tin user, trạng thái đăng nhập)
+
+### Đăng nhập ủy quyền
+
+- Build Server riêng
+- Sử dụng qua các dịch vụ trung gian: Auth0, Firebase,...
+
+### Gửi email cho khách hàng
+
+- Bảo back-end viết => Call api
+- Sử dụng qua các dịch vụ trung gian: Emailjs
+
+### UI Components
+
+- MUI
+- ANT Design
+- React Bootstrap
+- atlaskit
+- prime react
+- evergreen
+
+### Dự án cuối khóa
+
+- Web bán hàng
